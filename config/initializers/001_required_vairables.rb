@@ -1,8 +1,13 @@
 return if ENV['SKIP_VARS_CHEK'].present?
 
 required = %w[
-  CURRENT_HOST
 ]
+
+if Rails.env.development?
+  required += %w[
+TIME_ZONE
+  ]
+end
 
 if Rails.env.development?
   required += %w[
