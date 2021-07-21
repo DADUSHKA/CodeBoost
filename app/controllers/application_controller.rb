@@ -2,12 +2,12 @@ require 'application_responder'
 
 class ApplicationController < ActionController::Base
   def self. my_http_basic_authenticate_with(login, password)
-    return unless ENV['PROTECT_WITH_HTTP_BASIC'].present?
+    # return unless ENV['PROTECT_WITH_HTTP_BASIC'].present?
 
     http_basic_authenticate_with name: login, password: password
   end
 
-  my_http_basic_authenticate_with(ENV.fetch('ADMIN_LOGIN'), ENV.fetch('ADMIN_PASSWORD'))
+  my_http_basic_authenticate_with('admin', 'qwerty')
 
   self.responder = ApplicationResponder
   respond_to :html
